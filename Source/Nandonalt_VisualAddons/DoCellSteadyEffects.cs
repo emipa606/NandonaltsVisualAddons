@@ -38,7 +38,7 @@ namespace Nandonalt_VisualAddons
 						FilthMaker.TryMakeFilth(c, map, ThingDef.Named("FilthWater"), 1);
 					}
 				}
-				if (room != null && !room.UsesOutdoorTemperature && !room.Fogged)
+				if (room != null && !room.UsesOutdoorTemperature && !room.Fogged && !room.IsDoorway)
 				{
 					float num = 0.8f;
 					if (room.Temperature < (float)Settings.FogTemp)

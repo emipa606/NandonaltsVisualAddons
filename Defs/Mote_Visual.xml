@@ -20,7 +20,7 @@
     <thingClass>Thing</thingClass>
     <graphicData>
       <texPath>Glow/Ice</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <graphicClass>Graphic_Random</graphicClass>
       <shaderType>Transparent</shaderType>
     </graphicData>
     <altitudeLayer>FloorEmplacement</altitudeLayer>
