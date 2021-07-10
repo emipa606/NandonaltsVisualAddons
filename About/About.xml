@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Nandonalt's Visual Addons (Continued)</name>
   <packageId>Mlie.NandonaltsVisualAddons</packageId>
@@ -7,6 +7,7 @@
   <supportedVersions>
     <li>1.1</li>
     <li>1.2</li>
+    <li>1.3</li>
   </supportedVersions>
   <modDependencies>
     <li>
@@ -26,33 +27,57 @@
     <li>brrainz.harmony</li>
     <li>UnlimitedHugs.HugsLib</li>
   </loadAfter>
-  <description>Update of Nandonalts mod
+  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+Update of Nandonalts mod
 https://ludeon.com/forums/index.php?topic=29627.msg314322#msg314322
 continued to B18 by Jastro
 https://steamcommunity.com/sharedfiles/filedetails/?id=1232720536
 
-[img]https://i.imgur.com/GYswkZ7.png[/img]
+[img]https://i.imgur.com/7Gzt3Rg.png[/img]
 
-Support-chat:
-https://invite.gg/mlie
-
-Non-steam version:
-https://github.com/emipa606/NandonaltsVisualAddons
+[table]
+	[tr]
+		[td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+		[td][url=https://github.com/emipa606/NandonaltsVisualAddons][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+	[/tr]
+[/table]
 	
---- Original Description ---
-I saw a reddit post requesting an update mainly for the freezer effect, so here you go.
+[img]https://i.imgur.com/NOW7jU1.png[/img]
+
+[h1][url=https://ludeon.com/forums/index.php?topic=29627.msg314322#msg314322]Original mod by Nandonalt[/url]
+
+I saw a reddit post requesting an update mainly for the freezer effect, so here you go. [/h1]
 ________________________________________________________________________________
 
 A set of misc mods by Nandonalt. A new save is not required.
 
-"Sometimes I think of small additions to the game that would take too much time to make just one mod for it, so I decided to create a small pack."
+&quot;Sometimes I think of small additions to the game that would take too much time to make just one mod for it, so I decided to create a small pack.&quot;
 
-These features can be disabled on the mod settings.
-Cold Fog and "Ice Layer": when a room goes below 0C temperature, it'll slowly emit a effect that resembles the cold fog present in freezers. Also, a layer of ice will be created just above the floor.
+[h1]These features can be disabled on the mod settings.[/h1]
+[list]
 
-Water puddles: rain will form water puddles on the map which will dry when it's not raining. Water is easily spreaded by pawns. Does not affect anything but cleanliness/beauty of the area that it's on.
+[*][b]Cold Fog and &quot;Ice Layer&quot;[/b]: when a room goes below 0C temperature, it&apos;ll slowly emit a effect that resembles the cold fog present in freezers. Also, a layer of ice will be created just above the floor. 
 
-Cloudy Weather: new weather overlay, very slightly affects accuracy and wind speed.
+[*][b]Water puddles[/b]: rain will form water puddles on the map which will dry when it&apos;s not raining. Water is easily spreaded by pawns. Does not affect anything but cleanliness/beauty of the area that it&apos;s on.
 
-Billiard cues: pawns will wield cues when playing billiards.</description>
+[*][b]Cloudy Weather[/b]: new weather overlay, very slightly affects accuracy and wind speed. 
+
+[*][b]Billiard cues[/b]: pawns will wield cues when playing billiards.
+[/list]
+
+[h1]NOTES[/h1]
+[b]This mod makes use of the Harmony library by Pardeike (thanks!). You don&apos;t need to download it to use this mod, though (it&apos;s included).[/b]
+
+
+[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[list]
+[*] See if the the error persists if you just have this mod and its requirements active.
+[*] If not, try adding your other mods until it happens again.
+[*] Post your error-log using [url=https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] and command Ctrl+F12
+[*] For best support, please use the Discord-channel for error-reporting.
+[*] Do not report errors by making a discussion-thread, I get no notification of that.
+[*] If you have the solution for a problem, please post it to the GitHub repository.
+[/list]
+</description>
 </ModMetaData>
+
