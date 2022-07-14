@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Nandonalt's Visual Addons (Continued)</name>
   <packageId>Mlie.NandonaltsVisualAddons</packageId>
@@ -27,22 +27,26 @@
     <li>brrainz.harmony</li>
     <li>UnlimitedHugs.HugsLib</li>
   </loadAfter>
-  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+  <description>[img]https://i.imgur.com/buuPQel.png[/img]
 Update of Nandonalts mod
 https://ludeon.com/forums/index.php?topic=29627.msg314322#msg314322
 continued to B18 by Jastro
 https://steamcommunity.com/sharedfiles/filedetails/?id=1232720536
 
-[img]https://i.imgur.com/7Gzt3Rg.png[/img]
+[img]https://i.imgur.com/pufA0kM.png[/img]
 
 [table]
 	[tr]
 		[td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
 		[td][url=https://github.com/emipa606/NandonaltsVisualAddons][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
-	[/tr]
+    [/tr]
+    [tr]
+        [td][img]https://i.imgur.com/WjDSfUn.png[/img][/td]
+        [td][img]https://i.imgur.com/h5VwTNL.png[/img][/td]
+    [/tr]
 [/table]
 	
-[img]https://i.imgur.com/NOW7jU1.png[/img]
+[img]https://i.imgur.com/Z4GOv8H.png[/img]
 
 [h1][url=https://ludeon.com/forums/index.php?topic=29627.msg314322#msg314322]Original mod by Nandonalt[/url]
 
@@ -51,14 +55,14 @@ ________________________________________________________________________________
 
 A set of misc mods by Nandonalt. A new save is not required.
 
-&quot;Sometimes I think of small additions to the game that would take too much time to make just one mod for it, so I decided to create a small pack.&quot;
+"Sometimes I think of small additions to the game that would take too much time to make just one mod for it, so I decided to create a small pack."
 
 [h1]These features can be disabled on the mod settings.[/h1]
 [list]
 
-[*][b]Cold Fog and &quot;Ice Layer&quot;[/b]: when a room goes below 0C temperature, it&apos;ll slowly emit a effect that resembles the cold fog present in freezers. Also, a layer of ice will be created just above the floor. 
+[*][b]Cold Fog and "Ice Layer"[/b]: when a room goes below 0C temperature, it'll slowly emit a effect that resembles the cold fog present in freezers. Also, a layer of ice will be created just above the floor. 
 
-[*][b]Water puddles[/b]: rain will form water puddles on the map which will dry when it&apos;s not raining. Water is easily spreaded by pawns. Does not affect anything but cleanliness/beauty of the area that it&apos;s on.
+[*][b]Water puddles[/b]: rain will form water puddles on the map which will dry when it's not raining. Water is easily spreaded by pawns. Does not affect anything but cleanliness/beauty of the area that it's on.
 
 [*][b]Cloudy Weather[/b]: new weather overlay, very slightly affects accuracy and wind speed. 
 
@@ -66,10 +70,10 @@ A set of misc mods by Nandonalt. A new save is not required.
 [/list]
 
 [h1]NOTES[/h1]
-[b]This mod makes use of the Harmony library by Pardeike (thanks!). You don&apos;t need to download it to use this mod, though (it&apos;s included).[/b]
+[b]This mod makes use of the Harmony library by Pardeike (thanks!). You don't need to download it to use this mod, though (it's included).[/b]
 
 
-[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[img]https://i.imgur.com/PwoNOj4.png[/img]
 [list]
 [*] See if the the error persists if you just have this mod and its requirements active.
 [*] If not, try adding your other mods until it happens again.
@@ -80,4 +84,3 @@ A set of misc mods by Nandonalt. A new save is not required.
 [/list]
 </description>
 </ModMetaData>
-
