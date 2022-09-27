@@ -1,85 +1,140 @@
-﻿using System;
+using System;
+using System.IO;
 using System.Reflection;
+using System.Xml.Linq;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace Nandonalt_VisualAddons
+namespace Nandonalt_VisualAddons;
+
+[StaticConstructorOnStartup]
+public static class HarmonyPatches
 {
-    // Token: 0x02000002 RID: 2
-    [StaticConstructorOnStartup]
-    public static class HarmonyPatches
+    public static FieldInfo MapFieldInfo;
+
+    public static FieldInfo PawnFieldInfo_FilthTracker;
+
+    public static FieldInfo PawnFieldInfo_Renderer;
+
+    public static FieldInfo PawnFieldInfo_StoryTracker;
+
+    public static FieldInfo JobFieldInfo_CleanFilth;
+
+    public static Graphic poolCue = GraphicDatabase.Get(typeof(Graphic_Single), "Pool/Cue",
+        ShaderDatabase.DefaultShader, Vector2.one, Color.white, Color.white);
+
+    static HarmonyPatches()
     {
-        // Token: 0x04000001 RID: 1
-        public static FieldInfo MapFieldInfo;
-
-        // Token: 0x04000002 RID: 2
-        public static FieldInfo PawnFieldInfo_FilthTracker;
-
-        // Token: 0x04000003 RID: 3
-        public static FieldInfo PawnFieldInfo_Renderer;
-
-        // Token: 0x04000004 RID: 4
-        public static FieldInfo PawnFieldInfo_StoryTracker;
-
-        // Token: 0x04000005 RID: 5
-        public static FieldInfo JobFieldInfo_CleanFilth;
-
-        // Token: 0x04000006 RID: 6
-        public static Graphic poolCue = GraphicDatabase.Get(typeof(Graphic_Single), "Pool/Cue",
-            ShaderDatabase.DefaultShader, Vector2.one, Color.white, Color.white);
-
-        // Token: 0x06000001 RID: 1 RVA: 0x00002050 File Offset: 0x00000250
-        static HarmonyPatches()
+        foreach (var biomeDef in DefDatabase<BiomeDef>.AllDefs)
         {
-            foreach (var biomeDef in DefDatabase<BiomeDef>.AllDefs)
+            if (biomeDef == null)
             {
-                if (biomeDef == null)
-                {
-                    continue;
-                }
-
-                var weatherCommonalityRecord = new WeatherCommonalityRecord
-                {
-                    weather = WeatherDef.Named("Cloudy"), commonality = 5f
-                };
-                biomeDef.baseWeatherCommonalities.Add(weatherCommonalityRecord);
+                continue;
             }
 
-            WeatherDef.Named("Cloudy").skyColorsDay = WeatherDef.Named("Clear").skyColorsDay;
-            WeatherDef.Named("Cloudy").skyColorsDusk = WeatherDef.Named("Clear").skyColorsDusk;
-            WeatherDef.Named("Cloudy").skyColorsNightEdge = WeatherDef.Named("Clear").skyColorsNightEdge;
-            WeatherDef.Named("Cloudy").skyColorsNightMid = WeatherDef.Named("Clear").skyColorsNightMid;
-            Traverse.Create(WeatherDef.Named("Cloudy")).Field("workerInt")
-                .SetValue(new WeatherWorker(WeatherDef.Named("Cloudy")));
-            MapFieldInfo = typeof(SteadyEnvironmentEffects).GetField("map",
-                BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-            if (MapFieldInfo == null)
+            var weatherCommonalityRecord = new WeatherCommonalityRecord
             {
-                throw new Exception("Could not get FieldInfo!");
+                weather = WeatherDef.Named("Cloudy"), commonality = 5f
+            };
+            biomeDef.baseWeatherCommonalities.Add(weatherCommonalityRecord);
+        }
+
+        WeatherDef.Named("Cloudy").skyColorsDay = WeatherDef.Named("Clear").skyColorsDay;
+        WeatherDef.Named("Cloudy").skyColorsDusk = WeatherDef.Named("Clear").skyColorsDusk;
+        WeatherDef.Named("Cloudy").skyColorsNightEdge = WeatherDef.Named("Clear").skyColorsNightEdge;
+        WeatherDef.Named("Cloudy").skyColorsNightMid = WeatherDef.Named("Clear").skyColorsNightMid;
+        Traverse.Create(WeatherDef.Named("Cloudy")).Field("workerInt")
+            .SetValue(new WeatherWorker(WeatherDef.Named("Cloudy")));
+        MapFieldInfo = typeof(SteadyEnvironmentEffects).GetField("map",
+            BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+        if (MapFieldInfo == null)
+        {
+            throw new Exception("Could not get FieldInfo!");
+        }
+
+        PawnFieldInfo_FilthTracker = typeof(Pawn_FilthTracker).GetField("pawn",
+            BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+        if (PawnFieldInfo_FilthTracker == null)
+        {
+            throw new Exception("Could not get FieldInfo!");
+        }
+
+        PawnFieldInfo_Renderer = typeof(PawnRenderer).GetField("pawn",
+            BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+        if (PawnFieldInfo_Renderer == null)
+        {
+            throw new Exception("Could not get FieldInfo!");
+        }
+
+        PawnFieldInfo_StoryTracker = typeof(Pawn_StoryTracker).GetField("pawn",
+            BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+        if (PawnFieldInfo_StoryTracker == null)
+        {
+            throw new Exception("Could not get FieldInfo!");
+        }
+
+        var hugsLibConfig = Path.Combine(GenFilePaths.SaveDataFolderPath, Path.Combine("HugsLib", "ModSettings.xml"));
+        if (!new FileInfo(hugsLibConfig).Exists)
+        {
+            return;
+        }
+
+        var xml = XDocument.Load(hugsLibConfig);
+
+        var modSettings = xml.Root?.Element("NanondaltVisualAddons");
+        if (modSettings == null)
+        {
+            return;
+        }
+
+        foreach (var modSetting in modSettings.Elements())
+        {
+            if (modSetting.Name == "coldFog")
+            {
+                Nandonalt_VisualAddonsMod.instance.Settings.ColdFog = bool.Parse(modSetting.Value);
             }
 
-            PawnFieldInfo_FilthTracker = typeof(Pawn_FilthTracker).GetField("pawn",
-                BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-            if (PawnFieldInfo_FilthTracker == null)
+            if (modSetting.Name == "fogVelocity")
             {
-                throw new Exception("Could not get FieldInfo!");
+                Nandonalt_VisualAddonsMod.instance.Settings.FogVelocity = int.Parse(modSetting.Value);
             }
 
-            PawnFieldInfo_Renderer = typeof(PawnRenderer).GetField("pawn",
-                BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-            if (PawnFieldInfo_Renderer == null)
+            if (modSetting.Name == "fogTemp")
             {
-                throw new Exception("Could not get FieldInfo!");
+                Nandonalt_VisualAddonsMod.instance.Settings.FogTemp = int.Parse(modSetting.Value);
             }
 
-            PawnFieldInfo_StoryTracker = typeof(Pawn_StoryTracker).GetField("pawn",
-                BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-            if (PawnFieldInfo_StoryTracker == null)
+            if (modSetting.Name == "iceLayer")
             {
-                throw new Exception("Could not get FieldInfo!");
+                Nandonalt_VisualAddonsMod.instance.Settings.IceLayer = bool.Parse(modSetting.Value);
+            }
+
+            if (modSetting.Name == "billiardsCue")
+            {
+                Nandonalt_VisualAddonsMod.instance.Settings.BilliardsCue = bool.Parse(modSetting.Value);
+            }
+
+            if (modSetting.Name == "rain_WaterPuddles")
+            {
+                Nandonalt_VisualAddonsMod.instance.Settings.RainWaterPuddles = bool.Parse(modSetting.Value);
+            }
+
+            if (modSetting.Name == "puddleChance")
+            {
+                Nandonalt_VisualAddonsMod.instance.Settings.PuddleChance = int.Parse(modSetting.Value) / 100f;
+            }
+
+            if (modSetting.Name == "rain_cleanWaterPuddles")
+            {
+                Nandonalt_VisualAddonsMod.instance.Settings.RainCleanWaterPuddles = bool.Parse(modSetting.Value);
             }
         }
+
+        xml.Root.Element("NanondaltVisualAddons")?.Remove();
+        xml.Save(hugsLibConfig);
+
+        Log.Message("[NanondaltVisualAddons]: Imported old HugLib-settings");
     }
 }

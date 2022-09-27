@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <NVA.ColdFog>Cold Fog</NVA.ColdFog>
+  <NVA.ColdFog.Tooltip>Enable/disable cold fog on rooms with temperatures below {0}.</NVA.ColdFog.Tooltip>
+  <NVA.FogVelocity>Fog Velocity: {0}</NVA.FogVelocity>
+  <NVA.FogVelocity.Tooltip>Fog will move at this velocity.</NVA.FogVelocity.Tooltip>
+  <NVA.FogTemp>Fog Temperature: {0}</NVA.FogTemp>
+  <NVA.FogTemp.Tooltip>Fog will appear below this temperature</NVA.FogTemp.Tooltip>
+  <NVA.IceLayer>Ice Layer</NVA.IceLayer>
+  <NVA.IceLayer.Tooltip>Enable/disable formation of a layer of ice on rooms with temperatures below {0}.</NVA.IceLayer.Tooltip>
+  <NVA.BilliardsCue>Billiards Cue</NVA.BilliardsCue>
+  <NVA.BilliardsCue.Tooltip>Enable/disable showing cues when pawns are playing billards.</NVA.BilliardsCue.Tooltip>
+  <NVA.RainWaterPuddles>Water Puddles</NVA.RainWaterPuddles>
+  <NVA.RainWaterPuddles.Tooltip>Enable/disable formation of water puddles during rain.</NVA.RainWaterPuddles.Tooltip>
+  <NVA.PuddleChance>Puddle Chance {0}</NVA.PuddleChance>
+  <NVA.PuddleChance.Tooltip>Chance at which puddles will spawn on the map (Default 20)</NVA.PuddleChance.Tooltip>
+  <NVA.RainCleanWaterPuddles>Clean Water Puddles</NVA.RainCleanWaterPuddles>
+  <NVA.RainCleanWaterPuddles.Tooltip>Enable/disable cleaning of unrooofed water puddles on home area.</NVA.RainCleanWaterPuddles.Tooltip>
+</LanguageData>
