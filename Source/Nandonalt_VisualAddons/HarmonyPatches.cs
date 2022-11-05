@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Reflection;
 using System.Xml.Linq;
@@ -12,21 +11,21 @@ namespace Nandonalt_VisualAddons;
 [StaticConstructorOnStartup]
 public static class HarmonyPatches
 {
-    public static FieldInfo MapFieldInfo;
-
-    public static FieldInfo PawnFieldInfo_FilthTracker;
-
-    public static FieldInfo PawnFieldInfo_Renderer;
-
-    public static FieldInfo PawnFieldInfo_StoryTracker;
-
-    public static FieldInfo JobFieldInfo_CleanFilth;
-
-    public static Graphic poolCue = GraphicDatabase.Get(typeof(Graphic_Single), "Pool/Cue",
+    public static readonly Graphic poolCue = GraphicDatabase.Get(typeof(Graphic_Single), "Pool/Cue",
         ShaderDatabase.DefaultShader, Vector2.one, Color.white, Color.white);
+
+    public static readonly FleckDef coldFog;
+    public static readonly ThingDef iceOverlay;
+    public static readonly ThingDef filthWater;
+    public static readonly ThingDef filthWaterSpatter;
+
 
     static HarmonyPatches()
     {
+        coldFog = DefDatabase<FleckDef>.GetNamedSilentFail("Mote_FrostGlow");
+        iceOverlay = ThingDef.Named("IceOverlay");
+        filthWater = ThingDef.Named("FilthWater");
+        filthWaterSpatter = ThingDef.Named("FilthWaterSpatter");
         foreach (var biomeDef in DefDatabase<BiomeDef>.AllDefs)
         {
             if (biomeDef == null)
@@ -41,39 +40,15 @@ public static class HarmonyPatches
             biomeDef.baseWeatherCommonalities.Add(weatherCommonalityRecord);
         }
 
-        WeatherDef.Named("Cloudy").skyColorsDay = WeatherDef.Named("Clear").skyColorsDay;
-        WeatherDef.Named("Cloudy").skyColorsDusk = WeatherDef.Named("Clear").skyColorsDusk;
-        WeatherDef.Named("Cloudy").skyColorsNightEdge = WeatherDef.Named("Clear").skyColorsNightEdge;
-        WeatherDef.Named("Cloudy").skyColorsNightMid = WeatherDef.Named("Clear").skyColorsNightMid;
-        Traverse.Create(WeatherDef.Named("Cloudy")).Field("workerInt")
-            .SetValue(new WeatherWorker(WeatherDef.Named("Cloudy")));
-        MapFieldInfo = typeof(SteadyEnvironmentEffects).GetField("map",
-            BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-        if (MapFieldInfo == null)
-        {
-            throw new Exception("Could not get FieldInfo!");
-        }
+        var cloudy = WeatherDef.Named("Cloudy");
+        var clear = WeatherDef.Named("Clear");
+        cloudy.skyColorsDay = clear.skyColorsDay;
+        cloudy.skyColorsDusk = clear.skyColorsDusk;
+        cloudy.skyColorsNightEdge = clear.skyColorsNightEdge;
+        cloudy.skyColorsNightMid = clear.skyColorsNightMid;
+        cloudy.workerInt = new WeatherWorker(WeatherDef.Named("Cloudy"));
 
-        PawnFieldInfo_FilthTracker = typeof(Pawn_FilthTracker).GetField("pawn",
-            BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-        if (PawnFieldInfo_FilthTracker == null)
-        {
-            throw new Exception("Could not get FieldInfo!");
-        }
-
-        PawnFieldInfo_Renderer = typeof(PawnRenderer).GetField("pawn",
-            BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-        if (PawnFieldInfo_Renderer == null)
-        {
-            throw new Exception("Could not get FieldInfo!");
-        }
-
-        PawnFieldInfo_StoryTracker = typeof(Pawn_StoryTracker).GetField("pawn",
-            BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-        if (PawnFieldInfo_StoryTracker == null)
-        {
-            throw new Exception("Could not get FieldInfo!");
-        }
+        new Harmony("Mlie.NanondaltVisualAddons").PatchAll(Assembly.GetExecutingAssembly());
 
         var hugsLibConfig = Path.Combine(GenFilePaths.SaveDataFolderPath, Path.Combine("HugsLib", "ModSettings.xml"));
         if (!new FileInfo(hugsLibConfig).Exists)

@@ -12,22 +12,22 @@ namespace Nandonalt_VisualAddons;
 })]
 internal class TryPickupFilth
 {
-    private static void Postfix(Pawn_FilthTracker __instance)
+    private static void Postfix(Pawn_FilthTracker __instance, Pawn ___pawn)
     {
-        if (HarmonyPatches.PawnFieldInfo_FilthTracker.GetValue(__instance) is not Pawn pawn)
+        if (___pawn == null)
         {
             return;
         }
 
-        var thingList = pawn.Position.GetThingList(pawn.Map);
+        var thingList = ___pawn.Position.GetThingList(___pawn.Map);
         for (var i = thingList.Count - 1; i >= 0; i--)
         {
-            if (thingList[i] is not Filth filth || filth.def.defName != "FilthWater")
+            if (thingList[i] is not Filth filth || filth.def != HarmonyPatches.filthWater)
             {
                 continue;
             }
 
-            __instance.GainFilth(ThingDef.Named("FilthWaterSpatter"), filth.sources);
+            __instance.GainFilth(HarmonyPatches.filthWaterSpatter, filth.sources);
             filth.ThinFilth();
         }
     }

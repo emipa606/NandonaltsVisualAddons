@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!--=================== Visual - Heat ==================-->
+  <ThingDef ParentName="MoteBase">
+    <defName>Mote_FrostGlow</defName>
+    <graphicData>
+      <texPath>Glow/FrostGlow</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>2.0</fadeInTime>
+      <solidTime>2.0</solidTime>
+      <fadeOutTime>3.3</fadeOutTime>
+    </mote>
+  </ThingDef>
+  <ThingDef>
+    <defName>IceOverlay</defName>
+    <label>Ice</label>
+    <thingClass>Thing</thingClass>
+    <graphicData>
+      <texPath>Glow/Ice</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+      <shaderType>Transparent</shaderType>
+    </graphicData>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+  </ThingDef>
+</Defs>

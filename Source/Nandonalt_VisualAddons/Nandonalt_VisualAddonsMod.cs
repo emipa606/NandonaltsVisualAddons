@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Mlie;
+using UnityEngine;
 using Verse;
 
 namespace Nandonalt_VisualAddons;
@@ -10,6 +11,8 @@ internal class Nandonalt_VisualAddonsMod : Mod
     ///     The instance of the settings to be read by the mod
     /// </summary>
     public static Nandonalt_VisualAddonsMod instance;
+
+    private static string currentVersion;
 
     /// <summary>
     ///     The private settings
@@ -23,6 +26,9 @@ internal class Nandonalt_VisualAddonsMod : Mod
     public Nandonalt_VisualAddonsMod(ModContentPack content) : base(content)
     {
         instance = this;
+        currentVersion =
+            VersionFromManifest.GetVersionFromModMetaData(
+                ModLister.GetActiveModWithIdentifier("Mlie.NandonaltsVisualAddons"));
     }
 
     /// <summary>
@@ -96,6 +102,13 @@ internal class Nandonalt_VisualAddonsMod : Mod
             Settings.PuddleChance = listing_Standard.Slider(Settings.PuddleChance, 0, 1f);
         }
 
+        if (currentVersion != null)
+        {
+            listing_Standard.Gap();
+            GUI.contentColor = Color.gray;
+            listing_Standard.Label("NVA.CurrentModVersion".Translate(currentVersion));
+            GUI.contentColor = Color.white;
+        }
 
         listing_Standard.End();
     }

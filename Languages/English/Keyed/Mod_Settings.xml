@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <NVA.CurrentModVersion>Installed mod-version: {0}</NVA.CurrentModVersion>
   <NVA.ColdFog>Cold Fog</NVA.ColdFog>
   <NVA.ColdFog.Tooltip>Enable/disable cold fog on rooms with temperatures below {0}.</NVA.ColdFog.Tooltip>
   <NVA.FogVelocity>Fog Velocity: {0}</NVA.FogVelocity>

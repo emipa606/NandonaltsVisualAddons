@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BaseFilth">
+    <defName>FilthWater</defName>
+    <label>water</label>
+    <description>Water.</description>
+    <thingClass>Filth</thingClass>
+    <statBases>
+      <Beauty>-3</Beauty>
+      <Cleanliness>-10</Cleanliness>
+    </statBases>
+    <graphicData>
+      <texPath>Puddle/Water</texPath>
+      <shaderType>Transparent</shaderType>
+      <graphicClass>Graphic_Cluster</graphicClass>
+    </graphicData>
+    <pathCost>2</pathCost>
+    <filth>
+      <rainWashes>false</rainWashes>
+      <cleaningWorkToReduceThickness>10</cleaningWorkToReduceThickness>
+      <canFilthAttach>false</canFilthAttach>
+      <maxThickness>2</maxThickness>
+      <allowsFire>false</allowsFire>
+    </filth>
+  </ThingDef>
+  <ThingDef ParentName="BaseFilth">
+    <defName>FilthWaterSpatter</defName>
+    <label>water</label>
+    <description>Water.</description>
+    <thingClass>Filth</thingClass>
+    <statBases>
+      <Beauty>-2</Beauty>
+      <Cleanliness>-6</Cleanliness>
+    </statBases>
+    <graphicData>
+      <texPath>Spatter/WaterSpatter</texPath>
+      <graphicClass>Graphic_Cluster</graphicClass>
+      <shaderType>Transparent</shaderType>
+    </graphicData>
+    <pathCost>2</pathCost>
+    <filth>
+      <rainWashes>false</rainWashes>
+      <cleaningWorkToReduceThickness>5</cleaningWorkToReduceThickness>
+      <canFilthAttach>true</canFilthAttach>
+      <maxThickness>5</maxThickness>
+      <allowsFire>false</allowsFire>
+    </filth>
+  </ThingDef>
+</Defs>

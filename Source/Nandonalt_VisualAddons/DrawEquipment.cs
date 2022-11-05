@@ -8,25 +8,24 @@ namespace Nandonalt_VisualAddons;
 [HarmonyPatch("DrawEquipment")]
 internal class DrawEquipment
 {
-    private static void Prefix(PawnRenderer __instance, Vector3 rootLoc)
+    private static void Prefix(Vector3 rootLoc, Pawn ___pawn)
     {
         if (!Nandonalt_VisualAddonsMod.instance.Settings.BilliardsCue)
         {
             return;
         }
 
-        if (HarmonyPatches.PawnFieldInfo_Renderer.GetValue(__instance) is not Pawn pawn || pawn.Downed ||
-            pawn.Dead || !pawn.Spawned)
+        if (___pawn == null || ___pawn.Downed || ___pawn.Dead || !___pawn.Spawned)
         {
             return;
         }
 
-        if (pawn.CurJob == null || pawn.CurJob.def != DefDatabase<JobDef>.GetNamed("Play_Billiards"))
+        if (___pawn.CurJob == null || ___pawn.CurJob.def != DefDatabase<JobDef>.GetNamed("Play_Billiards"))
         {
             return;
         }
 
-        if (pawn.Rotation == Rot4.South)
+        if (___pawn.Rotation == Rot4.South)
         {
             var drawLoc = rootLoc + new Vector3(0f, 0f, -0.22f);
             drawLoc.y += 0.04f;
@@ -34,16 +33,15 @@ internal class DrawEquipment
             return;
         }
 
-        if (pawn.Rotation == Rot4.North)
+        if (___pawn.Rotation == Rot4.North)
         {
             var vector = rootLoc + new Vector3(0f, 0f, -0.11f);
             vector.y += 0.04f;
-            //vector.y = vector.y;
             DrawEquipmentAiming(vector, 143f);
             return;
         }
 
-        if (pawn.Rotation == Rot4.East)
+        if (___pawn.Rotation == Rot4.East)
         {
             var drawLoc2 = rootLoc + new Vector3(0.2f, 0f, -0.22f);
             drawLoc2.y += 0.04f;
@@ -51,7 +49,7 @@ internal class DrawEquipment
             return;
         }
 
-        if (pawn.Rotation != Rot4.West)
+        if (___pawn.Rotation != Rot4.West)
         {
             return;
         }

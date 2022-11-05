@@ -19,7 +19,7 @@ public static class CleanFilthPrefixPatch
         {
             var thing = localTargetInfo.Thing;
             if (thing is Filth filth &&
-                (filth.def.defName == "FilthWater" || filth.def.defName == "FilthWaterSpatter") &&
+                filth.def.defName is "FilthWater" or "FilthWaterSpatter" &&
                 thing.GetRoom(RegionType.Set_Passable).UsesOutdoorTemperature &&
                 !thing.Map.roofGrid.Roofed(thing.Position))
             {

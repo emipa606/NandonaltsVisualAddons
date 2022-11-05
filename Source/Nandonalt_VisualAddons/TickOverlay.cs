@@ -24,7 +24,7 @@ internal class TickOverlay
         {
             FilthMaker.TryMakeFilth(
                 CellFinderLoose.RandomCellWith(sq => sq.Standable(map) && !map.roofGrid.Roofed(sq), map), map,
-                ThingDef.Named("FilthWater"));
+                HarmonyPatches.filthWater);
         }
     }
 }
