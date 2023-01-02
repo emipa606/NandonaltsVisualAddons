@@ -10,6 +10,9 @@
     <overlayClasses>
       <li>Nandonalt_VisualAddons.WeatherOverlay_Cloudy</li>
     </overlayClasses>
+    <ambientSounds>
+      <li>Ambient_Wind_Clear</li>
+    </ambientSounds>
     <commonalityRainfallFactor>
       <points>
         <li>(0, 0)</li>

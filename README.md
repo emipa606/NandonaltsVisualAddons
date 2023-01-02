@@ -8,6 +8,10 @@ continued to B18 by Jastro
 https://steamcommunity.com/sharedfiles/filedetails/?id=1232720536
 
 - Migrated from old HugsLib settings, opened the settings for translations
+- A bit more optimized
+
+## There is a better, more optimized mod for the visual effect of cold temperatures. Please look at https://steamcommunity.com/sharedfiles/filedetails/?id=2886571275]Simple FX: Vapor by Owlchemist
+
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 
@@ -59,3 +63,4 @@ A set of misc mods by Nandonalt. A new save is not required.
 
 
 
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2173512473]Last updated 2023-01-02
