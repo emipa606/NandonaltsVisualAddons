@@ -8,10 +8,9 @@ namespace Nandonalt_VisualAddons;
 
 [HarmonyPatch(typeof(SteadyEnvironmentEffects))]
 [HarmonyPatch("DoCellSteadyEffects")]
-[HarmonyPatch(new[]
-{
+[HarmonyPatch([
     typeof(IntVec3)
-})]
+])]
 internal class DoCellSteadyEffects
 {
     private static void Postfix(IntVec3 c, Map ___map)

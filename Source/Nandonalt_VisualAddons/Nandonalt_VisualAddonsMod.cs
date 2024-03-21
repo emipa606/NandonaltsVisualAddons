@@ -27,8 +27,7 @@ internal class Nandonalt_VisualAddonsMod : Mod
     {
         instance = this;
         currentVersion =
-            VersionFromManifest.GetVersionFromModMetaData(
-                ModLister.GetActiveModWithIdentifier("Mlie.NandonaltsVisualAddons"));
+            VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
     }
 
     /// <summary>

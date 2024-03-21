@@ -4,57 +4,57 @@ using Verse;
 
 namespace Nandonalt_VisualAddons;
 
-[HarmonyPatch(typeof(PawnRenderer))]
-[HarmonyPatch("DrawEquipment")]
+[HarmonyPatch(typeof(PawnRenderUtility))]
+[HarmonyPatch("DrawEquipmentAndApparelExtras")]
 internal class DrawEquipment
 {
-    private static void Prefix(Vector3 rootLoc, Pawn ___pawn)
+    private static void Prefix(Vector3 drawPos, Pawn pawn)
     {
         if (!Nandonalt_VisualAddonsMod.instance.Settings.BilliardsCue)
         {
             return;
         }
 
-        if (___pawn == null || ___pawn.Downed || ___pawn.Dead || !___pawn.Spawned)
+        if (pawn == null || pawn.Downed || pawn.Dead || !pawn.Spawned)
         {
             return;
         }
 
-        if (___pawn.CurJob == null || ___pawn.CurJob.def != DefDatabase<JobDef>.GetNamed("Play_Billiards"))
+        if (pawn.CurJob == null || pawn.CurJob.def != DefDatabase<JobDef>.GetNamed("Play_Billiards"))
         {
             return;
         }
 
-        if (___pawn.Rotation == Rot4.South)
+        if (pawn.Rotation == Rot4.South)
         {
-            var drawLoc = rootLoc + new Vector3(0f, 0f, -0.22f);
+            var drawLoc = drawPos + new Vector3(0f, 0f, -0.22f);
             drawLoc.y += 0.04f;
             DrawEquipmentAiming(drawLoc, 143f);
             return;
         }
 
-        if (___pawn.Rotation == Rot4.North)
+        if (pawn.Rotation == Rot4.North)
         {
-            var vector = rootLoc + new Vector3(0f, 0f, -0.11f);
+            var vector = drawPos + new Vector3(0f, 0f, -0.11f);
             vector.y += 0.04f;
             DrawEquipmentAiming(vector, 143f);
             return;
         }
 
-        if (___pawn.Rotation == Rot4.East)
+        if (pawn.Rotation == Rot4.East)
         {
-            var drawLoc2 = rootLoc + new Vector3(0.2f, 0f, -0.22f);
+            var drawLoc2 = drawPos + new Vector3(0.2f, 0f, -0.22f);
             drawLoc2.y += 0.04f;
             DrawEquipmentAiming(drawLoc2, 143f);
             return;
         }
 
-        if (___pawn.Rotation != Rot4.West)
+        if (pawn.Rotation != Rot4.West)
         {
             return;
         }
 
-        var drawLoc3 = rootLoc + new Vector3(-0.2f, 0f, -0.22f);
+        var drawLoc3 = drawPos + new Vector3(-0.2f, 0f, -0.22f);
         drawLoc3.y += 0.04f;
         DrawEquipmentAiming(drawLoc3, 217f);
     }

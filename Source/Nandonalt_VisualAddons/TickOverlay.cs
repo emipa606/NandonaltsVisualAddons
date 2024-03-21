@@ -6,10 +6,9 @@ namespace Nandonalt_VisualAddons;
 
 [HarmonyPatch(typeof(SkyOverlay))]
 [HarmonyPatch("TickOverlay")]
-[HarmonyPatch(new[]
-{
+[HarmonyPatch([
     typeof(Map)
-})]
+])]
 internal class TickOverlay
 {
     private static void Postfix(Map map)

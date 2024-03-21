@@ -46,7 +46,8 @@ public static class HarmonyPatches
         cloudy.skyColorsDusk = clear.skyColorsDusk;
         cloudy.skyColorsNightEdge = clear.skyColorsNightEdge;
         cloudy.skyColorsNightMid = clear.skyColorsNightMid;
-        cloudy.workerInt = new WeatherWorker(WeatherDef.Named("Cloudy"));
+        AccessTools.Field(typeof(WeatherDef), "workerInt")
+            .SetValue(cloudy, new WeatherWorker(WeatherDef.Named("Cloudy")));
 
         new Harmony("Mlie.NanondaltVisualAddons").PatchAll(Assembly.GetExecutingAssembly());
 
