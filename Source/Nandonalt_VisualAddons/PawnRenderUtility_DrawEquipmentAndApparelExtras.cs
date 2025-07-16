@@ -4,13 +4,12 @@ using Verse;
 
 namespace Nandonalt_VisualAddons;
 
-[HarmonyPatch(typeof(PawnRenderUtility))]
-[HarmonyPatch("DrawEquipmentAndApparelExtras")]
-internal class DrawEquipment
+[HarmonyPatch(typeof(PawnRenderUtility), nameof(PawnRenderUtility.DrawEquipmentAndApparelExtras))]
+internal class PawnRenderUtility_DrawEquipmentAndApparelExtras
 {
-    private static void Prefix(Vector3 drawPos, Pawn pawn)
+    public static void Prefix(Vector3 drawPos, Pawn pawn)
     {
-        if (!Nandonalt_VisualAddonsMod.instance.Settings.BilliardsCue)
+        if (!Nandonalt_VisualAddonsMod.Instance.Settings.BilliardsCue)
         {
             return;
         }
@@ -29,7 +28,7 @@ internal class DrawEquipment
         {
             var drawLoc = drawPos + new Vector3(0f, 0f, -0.22f);
             drawLoc.y += 0.04f;
-            DrawEquipmentAiming(drawLoc, 143f);
+            drawEquipmentAiming(drawLoc, 143f);
             return;
         }
 
@@ -37,7 +36,7 @@ internal class DrawEquipment
         {
             var vector = drawPos + new Vector3(0f, 0f, -0.11f);
             vector.y += 0.04f;
-            DrawEquipmentAiming(vector, 143f);
+            drawEquipmentAiming(vector, 143f);
             return;
         }
 
@@ -45,7 +44,7 @@ internal class DrawEquipment
         {
             var drawLoc2 = drawPos + new Vector3(0.2f, 0f, -0.22f);
             drawLoc2.y += 0.04f;
-            DrawEquipmentAiming(drawLoc2, 143f);
+            drawEquipmentAiming(drawLoc2, 143f);
             return;
         }
 
@@ -56,13 +55,13 @@ internal class DrawEquipment
 
         var drawLoc3 = drawPos + new Vector3(-0.2f, 0f, -0.22f);
         drawLoc3.y += 0.04f;
-        DrawEquipmentAiming(drawLoc3, 217f);
+        drawEquipmentAiming(drawLoc3, 217f);
     }
 
-    public static void DrawEquipmentAiming(Vector3 drawLoc, float aimAngle)
+    private static void drawEquipmentAiming(Vector3 drawLoc, float aimAngle)
     {
         var num = aimAngle - 90f;
-        var num2 = -85f;
+        const float num2 = -85f;
         Mesh mesh;
         switch (aimAngle)
         {
@@ -82,7 +81,7 @@ internal class DrawEquipment
         }
 
         num %= 360f;
-        var matSingle = HarmonyPatches.poolCue.MatSingle;
+        var matSingle = HarmonyPatches.PoolCue.MatSingle;
         Graphics.DrawMesh(mesh, drawLoc, Quaternion.AngleAxis(num, Vector3.up), matSingle, 0);
     }
 }

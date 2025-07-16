@@ -1,0 +1,32 @@
+ManifestFileVersion: 0
+CRC: 1209797738
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 410191fabb4f04b0ce0dbaf8639457ca
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2612ac43db082a73502ee80f2eceb73f
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 410191fabb4f04b0ce0dbaf8639457ca
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Data/Mlie.NandonaltsVisualAddons/Textures/Glow/FrostGlow.png
+- Assets/Data/Mlie.NandonaltsVisualAddons/Textures/Puddle/Water/WaterA.png
+- Assets/Data/Mlie.NandonaltsVisualAddons/Textures/Settings/SettingsButton.png
+- Assets/Data/Mlie.NandonaltsVisualAddons/Textures/Pool/Cue.png
+- Assets/Data/Mlie.NandonaltsVisualAddons/Textures/Spatter/WaterSpatter/WaterSpatterA.png
+- Assets/Data/Mlie.NandonaltsVisualAddons/Textures/Spatter/WaterSpatter/WaterSpatterC.png
+- Assets/Data/Mlie.NandonaltsVisualAddons/Textures/Weather/Cloudy.png
+- Assets/Data/Mlie.NandonaltsVisualAddons/Textures/Glow/Ice/Ice1.png
+- Assets/Data/Mlie.NandonaltsVisualAddons/Textures/Glow/Ice/Ice4.png
+- Assets/Data/Mlie.NandonaltsVisualAddons/Textures/Glow/Ice/Ice2.png
+- Assets/Data/Mlie.NandonaltsVisualAddons/Textures/Glow/Ice/Ice3.png
+- Assets/Data/Mlie.NandonaltsVisualAddons/Textures/Spatter/WaterSpatter/WaterSpatterB.png
+- Assets/Data/Mlie.NandonaltsVisualAddons/Textures/Glow/ice2.png
+Dependencies: []

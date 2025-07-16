@@ -4,25 +4,27 @@ using Verse;
 namespace Nandonalt_VisualAddons;
 
 [StaticConstructorOnStartup]
-public class WeatherOverlay_Cloudy : SkyOverlay
+public class WeatherOverlay_Cloudy : WeatherOverlayDualPanner
 {
-    public static readonly Material CloudyOverlayWorld = new Material(MatLoader.LoadMat("Weather/FogOverlayWorld"));
+    private const float PanSpeed = 0.0004f;
+    private static readonly Material cloudyOverlayWorld = new(MatLoader.LoadMat("Weather/FogOverlayWorld"));
 
     public WeatherOverlay_Cloudy()
     {
-        worldOverlayMat = CloudyOverlayWorld;
+        worldOverlayMat = cloudyOverlayWorld;
+
         if (Rand.Bool)
         {
             worldPanDir1 = new Vector2(0f, 1f);
             worldPanDir2 = new Vector2(0f, -1f);
-            worldOverlayPanSpeed1 = 0.0004f;
-            worldOverlayPanSpeed2 = 0.0004f;
-            return;
+        }
+        else
+        {
+            worldPanDir1 = new Vector2(1f, 0f);
+            worldPanDir2 = new Vector2(-1f, 0f);
         }
 
-        worldPanDir1 = new Vector2(1f, 0f);
-        worldPanDir2 = new Vector2(-1f, 0f);
-        worldOverlayPanSpeed1 = 0.0004f;
-        worldOverlayPanSpeed2 = 0.0004f;
+        worldOverlayPanSpeed1 = PanSpeed;
+        worldOverlayPanSpeed2 = PanSpeed;
     }
 }

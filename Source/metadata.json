@@ -2,5 +2,18 @@
   "Continued": true,
   "CanAdd": "0",
   "CanRemove": "0",
-  "PreviewVersion": "1.5"
+  "PreviewVersion": "1.6",
+  "Patches": false,
+  "Defs": true,
+  "Assemblies": true,
+  "LinesOfCode": 19914,
+  "LinesOfXML": 3947,
+  "CodeBaseSize": 69,
+  "LastXmlCleaning": "2025-07-16T16:15:35.7186023+02:00",
+  "SocialImageSet": true,
+  "SearchTags": [
+    " cold temperature",
+    " fog",
+    " billiards"
+  ]
 }

@@ -4,13 +4,12 @@ using Verse;
 
 namespace Nandonalt_VisualAddons;
 
-[HarmonyPatch(typeof(JobDriver_CleanFilth), "TryMakePreToilReservations", null)]
-public static class CleanFilthPrefixPatch
+[HarmonyPatch(typeof(JobDriver_CleanFilth), nameof(JobDriver_CleanFilth.TryMakePreToilReservations), null)]
+public static class JobDriver_CleanFilth_TryMakePreToilReservations
 {
-    [HarmonyPrefix]
-    public static bool CleanFilthPrefix(JobDriver_CleanFilth __instance)
+    public static bool Prefix(JobDriver_CleanFilth __instance)
     {
-        if (Nandonalt_VisualAddonsMod.instance.Settings.RainCleanWaterPuddles)
+        if (Nandonalt_VisualAddonsMod.Instance.Settings.RainCleanWaterPuddles)
         {
             return true;
         }

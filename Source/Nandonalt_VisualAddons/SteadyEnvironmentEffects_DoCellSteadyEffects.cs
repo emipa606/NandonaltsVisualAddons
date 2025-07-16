@@ -6,14 +6,10 @@ using Verse;
 
 namespace Nandonalt_VisualAddons;
 
-[HarmonyPatch(typeof(SteadyEnvironmentEffects))]
-[HarmonyPatch("DoCellSteadyEffects")]
-[HarmonyPatch([
-    typeof(IntVec3)
-])]
-internal class DoCellSteadyEffects
+[HarmonyPatch(typeof(SteadyEnvironmentEffects), "DoCellSteadyEffects", typeof(IntVec3))]
+internal class SteadyEnvironmentEffects_DoCellSteadyEffects
 {
-    private static void Postfix(IntVec3 c, Map ___map)
+    public static void Postfix(IntVec3 c, Map ___map)
     {
         if (___map == null)
         {
@@ -21,31 +17,31 @@ internal class DoCellSteadyEffects
         }
 
         var room = c.GetRoom(___map);
-        if (Nandonalt_VisualAddonsMod.instance.Settings.ColdFog || Nandonalt_VisualAddonsMod.instance.Settings.IceLayer)
+        if (Nandonalt_VisualAddonsMod.Instance.Settings.ColdFog || Nandonalt_VisualAddonsMod.Instance.Settings.IceLayer)
         {
             var thing = (from t in c.GetThingList(___map)
-                where t.def == HarmonyPatches.iceOverlay
+                where t.def == HarmonyPatches.IceOverlay
                 select t).FirstOrDefault();
-            if (room == null && thing != null && Nandonalt_VisualAddonsMod.instance.Settings.IceLayer)
+            if (room == null && thing != null && Nandonalt_VisualAddonsMod.Instance.Settings.IceLayer)
             {
                 thing.Destroy();
                 if (Rand.Range(1, 100) <= 20)
                 {
-                    FilthMaker.TryMakeFilth(c, ___map, HarmonyPatches.filthWater);
+                    FilthMaker.TryMakeFilth(c, ___map, HarmonyPatches.FilthWater);
                 }
             }
 
             if (room is { UsesOutdoorTemperature: false, Fogged: false, IsDoorway: false })
             {
-                var num = 0.8f;
-                if (room.Temperature < Nandonalt_VisualAddonsMod.instance.Settings.FogTemp)
+                const float num = 0.8f;
+                if (room.Temperature < Nandonalt_VisualAddonsMod.Instance.Settings.FogTemp)
                 {
-                    if (thing == null && Nandonalt_VisualAddonsMod.instance.Settings.IceLayer)
+                    if (thing == null && Nandonalt_VisualAddonsMod.Instance.Settings.IceLayer)
                     {
-                        GenSpawn.Spawn(ThingMaker.MakeThing(HarmonyPatches.iceOverlay), c, ___map);
+                        GenSpawn.Spawn(ThingMaker.MakeThing(HarmonyPatches.IceOverlay), c, ___map);
                     }
 
-                    if (Nandonalt_VisualAddonsMod.instance.Settings.ColdFog)
+                    if (Nandonalt_VisualAddonsMod.Instance.Settings.ColdFog)
                     {
                         var vector = c.ToVector3Shifted();
                         var motes = !(!vector.ShouldSpawnMotesAt(___map) || ___map.moteCounter.SaturatedLowPriority);
@@ -58,12 +54,12 @@ internal class DoCellSteadyEffects
 
                         if (motes)
                         {
-                            var fogFleck = FleckMaker.GetDataStatic(vector, ___map, HarmonyPatches.coldFog,
+                            var fogFleck = FleckMaker.GetDataStatic(vector, ___map, HarmonyPatches.ColdFog,
                                 Rand.Range(4f, 6f) * num);
                             fogFleck.rotationRate = Rand.Range(-3f, 3f);
                             fogFleck.velocityAngle = Rand.Bool ? -90 : 90;
                             fogFleck.velocitySpeed =
-                                (float)(Nandonalt_VisualAddonsMod.instance.Settings.FogVelocity * 0.01);
+                                (float)(Nandonalt_VisualAddonsMod.Instance.Settings.FogVelocity * 0.01);
                             ___map.flecks.CreateFleck(fogFleck);
                         }
                     }
@@ -73,16 +69,16 @@ internal class DoCellSteadyEffects
                     thing.Destroy();
                     if (Rand.Range(1, 100) <= 20)
                     {
-                        FilthMaker.TryMakeFilth(c, ___map, HarmonyPatches.filthWater);
+                        FilthMaker.TryMakeFilth(c, ___map, HarmonyPatches.FilthWater);
                     }
                 }
             }
         }
 
-        if (!Nandonalt_VisualAddonsMod.instance.Settings.IceLayer)
+        if (!Nandonalt_VisualAddonsMod.Instance.Settings.IceLayer)
         {
             var thing2 = (from t in c.GetThingList(___map)
-                where t.def == HarmonyPatches.iceOverlay
+                where t.def == HarmonyPatches.IceOverlay
                 select t).FirstOrDefault();
             thing2?.Destroy();
         }
