@@ -5,7 +5,7 @@ using Verse;
 namespace Nandonalt_VisualAddons;
 
 [HarmonyPatch(typeof(PawnRenderUtility), nameof(PawnRenderUtility.DrawEquipmentAndApparelExtras))]
-internal class PawnRenderUtility_DrawEquipmentAndApparelExtras
+internal static class PawnRenderUtility_DrawEquipmentAndApparelExtras
 {
     public static void Prefix(Vector3 drawPos, Pawn pawn)
     {
@@ -65,10 +65,6 @@ internal class PawnRenderUtility_DrawEquipmentAndApparelExtras
         Mesh mesh;
         switch (aimAngle)
         {
-            case > 20f and < 160f:
-                mesh = MeshPool.plane10;
-                num += num2;
-                break;
             case > 200f and < 340f:
                 mesh = MeshPool.plane10Flip;
                 num -= 180f;

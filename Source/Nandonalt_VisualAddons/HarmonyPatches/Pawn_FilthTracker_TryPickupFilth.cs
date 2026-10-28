@@ -5,7 +5,7 @@ using Verse;
 namespace Nandonalt_VisualAddons;
 
 [HarmonyPatch(typeof(Pawn_FilthTracker), "TryPickupFilth")]
-internal class Pawn_FilthTracker_TryPickupFilth
+internal static class Pawn_FilthTracker_TryPickupFilth
 {
     public static void Postfix(Pawn_FilthTracker __instance, Pawn ___pawn)
     {

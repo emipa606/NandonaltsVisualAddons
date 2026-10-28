@@ -7,7 +7,7 @@ using Verse;
 namespace Nandonalt_VisualAddons;
 
 [HarmonyPatch(typeof(SteadyEnvironmentEffects), "DoCellSteadyEffects", typeof(IntVec3))]
-internal class SteadyEnvironmentEffects_DoCellSteadyEffects
+internal static class SteadyEnvironmentEffects_DoCellSteadyEffects
 {
     public static void Postfix(IntVec3 c, Map ___map)
     {

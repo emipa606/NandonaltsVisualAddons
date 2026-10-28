@@ -6,4 +6,15 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="Nandonalt_VisualAddons/Nandonalt_VisualAddons.csproj" />
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/Mod_Settings.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/">
+    <File Path="../1.7/Defs/Filth_Various.xml" />
+    <File Path="../1.7/Defs/Mote_Visual.xml" />
+    <File Path="../1.7/Defs/Weathers.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
 </Solution>

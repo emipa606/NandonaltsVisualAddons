@@ -1,3 +1,4 @@
+using System.Linq;
 using HarmonyLib;
 using RimWorld;
 using Verse;
@@ -14,9 +15,8 @@ public static class JobDriver_CleanFilth_TryMakePreToilReservations
             return true;
         }
 
-        foreach (var localTargetInfo in __instance.job.targetQueueA)
+        foreach (var thing in __instance.job.targetQueueA.Select(localTargetInfo => localTargetInfo.Thing))
         {
-            var thing = localTargetInfo.Thing;
             if (thing is Filth filth &&
                 filth.def.defName is "FilthWater" or "FilthWaterSpatter" &&
                 thing.GetRoom(RegionType.Set_Passable).UsesOutdoorTemperature &&

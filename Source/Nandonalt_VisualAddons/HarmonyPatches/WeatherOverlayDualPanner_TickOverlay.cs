@@ -5,7 +5,7 @@ using Verse;
 namespace Nandonalt_VisualAddons;
 
 [HarmonyPatch(typeof(WeatherOverlayDualPanner), nameof(WeatherOverlayDualPanner.TickOverlay))]
-internal class WeatherOverlayDualPanner_TickOverlay
+internal static class WeatherOverlayDualPanner_TickOverlay
 {
     public static void Postfix(Map map)
     {

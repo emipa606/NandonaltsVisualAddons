@@ -108,7 +108,7 @@ public static class HarmonyPatches
             }
         }
 
-        xml.Root.Element("NanondaltVisualAddons")?.Remove();
+        xml.Root?.Element("NanondaltVisualAddons")?.Remove();
         xml.Save(hugsLibConfig);
 
         Log.Message("[NanondaltVisualAddons]: Imported old HugLib-settings");
